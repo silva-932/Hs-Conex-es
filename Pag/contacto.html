@@ -13,6 +13,9 @@
   />
 </head>
 <body>
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
   <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">HS Conexões</div>
@@ -88,6 +91,17 @@
       });
     });
   </script>
+       <script>
+        window.addEventListener("load", function () {
+          const preloader = document.getElementById("preloader");
+          preloader.style.opacity = "0";
+          preloader.style.pointerEvents = "none";
+          setTimeout(() => {
+            preloader.style.display = "none";
+          }, 500); // tempo de transição
+        });
+      </script>
+      
 
   <script src="../Js/script.js"></script>
 </body>
