@@ -1,0 +1,3 @@
+git add .
+git commit -m "Atualização geral do projeto"
+git push;  
