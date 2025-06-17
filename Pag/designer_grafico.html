@@ -20,6 +20,11 @@
         <p>Solicite agora o seu projeto gráfico sob medida! A nossa equipa criativa irá responder rapidamente.</p>
       </div>
 
+      <!-- Mensagem de sucesso -->
+      <div id="mensagem-sucesso" class="mensagem-sucesso" style="display:none;">
+        <i class="fa fa-check-circle"></i> Pedido enviado com sucesso!
+      </div>
+
       <!-- Formulário -->
       <form id="design-form" class="form-box">
         <div class="form-group">
@@ -33,6 +38,11 @@
         </div>
 
         <div class="form-group">
+          <label for="telefone"><i class="fa fa-phone"></i> Telefone / WhatsApp</label>
+          <input type="tel" id="telefone" placeholder="Ex: +244 923 000 000">
+        </div>
+
+        <div class="form-group">
           <label for="tipo"><i class="fa fa-clipboard-list"></i> Tipo de Projeto</label>
           <select id="tipo" required>
             <option value="" disabled selected>Escolha uma opção</option>
@@ -42,6 +52,16 @@
             <option>Identidade Visual</option>
             <option>Outro</option>
           </select>
+        </div>
+
+        <div class="form-group">
+          <label for="prazo"><i class="fa fa-calendar-alt"></i> Prazo desejado</label>
+          <input type="date" id="prazo">
+        </div>
+
+        <div class="form-group">
+          <label for="arquivo"><i class="fa fa-paperclip"></i> Arquivo de Referência (opcional)</label>
+          <input type="file" id="arquivo" accept=".jpg,.png,.pdf,.ai">
         </div>
 
         <div class="form-group">
