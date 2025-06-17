@@ -5,6 +5,11 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+.logo-img {
+    height: 40px;
+    width: auto;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+  }
 
 /* Fundo geral com imagem e gradiente */
 body {
