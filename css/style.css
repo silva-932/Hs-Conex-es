@@ -26,12 +26,12 @@
     border: 5px solid #ffcc00;
     border-top: 5px solid transparent;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: spin 5s linear infinite;
   }
   
   @keyframes spin {
     to {
-      transform: rotate(360deg);
+      transform: rotate(1000deg);
     }
   }
   
