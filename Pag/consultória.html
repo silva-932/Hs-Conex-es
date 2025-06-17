@@ -33,6 +33,16 @@
         </div>
 
         <div class="form-group">
+          <label for="email"><i class="fa fa-envelope"></i> E-mail</label>
+          <input type="email" id="email" placeholder="Digite seu e-mail" required>
+        </div>
+
+        <div class="form-group">
+          <label for="telefone"><i class="fa fa-phone"></i> Telefone / WhatsApp</label>
+          <input type="tel" id="telefone" placeholder="Ex: +244 923 000 000">
+        </div>
+
+        <div class="form-group">
           <label for="tipo"><i class="fa fa-clipboard-list"></i> Tipo de Serviço</label>
           <select id="tipo" required>
             <option value="" disabled selected>Escolha um tipo de serviço</option>
@@ -111,6 +121,26 @@
           </select>
         </div>
         
+
+        <div class="form-group">
+          <label for="prazo"><i class="fa fa-calendar-alt"></i> Data Preferencial</label>
+          <input type="date" id="prazo">
+        </div>
+
+        <div class="form-group">
+          <label for="arquivo"><i class="fa fa-paperclip"></i> Arquivo de Referência (opcional)</label>
+          <input type="file" id="arquivo" accept=".jpg,.png,.pdf,.docx">
+        </div>
+
+        <div class="form-group">
+          <label for="mensagem"><i class="fa fa-comment"></i> Detalhes da Necessidade</label>
+          <textarea id="mensagem" placeholder="Descreva o seu problema ou necessidade..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-enviar"><i class="fa fa-paper-plane"></i> Enviar Solicitação</button>
+      </form>
+    </div>
+  </section>
 
   <!-- Área de Respostas -->
   <section class="respostas-section">
