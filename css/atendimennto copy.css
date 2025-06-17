@@ -168,3 +168,49 @@ textarea {
     font-size: 0.95rem;
   }
 }
+/* ... (mantém o restante do seu CSS acima) ... */
+
+/* Tipo de cliente (radio) */
+.tipo-cliente {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.tipo-cliente label {
+  font-weight: bold;
+  color: #00d8ff;
+  cursor: pointer;
+}
+
+.tipo-cliente input {
+  margin-right: 5px;
+  accent-color: #00d8ff;
+}
+
+/* Grupos condicionais */
+.grupo-unipessoal,
+.grupo-empresa {
+  display: none;
+}
+
+.grupo-unipessoal.ativo,
+.grupo-empresa.ativo {
+  display: block;
+}
+
+/* Substituir prazo-info por resposta-info */
+.resposta-info {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* Responsivo para inputs agrupados */
+@media (max-width: 600px) {
+  .tipo-cliente {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

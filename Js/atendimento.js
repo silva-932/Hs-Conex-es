@@ -5,6 +5,13 @@ const form = document.getElementById('design-form');
 const listaPedidos = document.getElementById('lista-pedidos');
 const mensagemSucesso = document.getElementById('mensagem-sucesso');
 
+const tipoClienteRadios = document.querySelectorAll('input[name="tipo-cliente"]');
+const camposUnipessoal = document.getElementById('campos-unipessoal');
+const camposEmpresa = document.getElementById('campos-empresa');
+
+const campoResposta = document.getElementById('prazo');
+const avisoResposta = document.getElementById('prazo-info');
+
 // Armazenar pedidos (simulado)
 let pedidos = [];
 
@@ -17,14 +24,14 @@ function adicionarPedido(pedido) {
     <strong>${pedido.nome}</strong> - ${pedido.tipo} <br>
     <small><i class="fa fa-envelope"></i> ${pedido.email} | <i class="fa fa-phone"></i> ${pedido.telefone}</small><br>
     <p>${pedido.mensagem}</p>
-    <small><i class="fa fa-clock"></i> Entrega até: ${pedido.prazo}</small>
+    <small><i class="fa fa-clock"></i> Resposta prevista: ${pedido.prazo}</small>
   `;
 
   listaPedidos.prepend(item);
 }
 
 // Evento de envio do formulário
-form.addEventListener('submit', function(e) {
+form.addEventListener('submit', function (e) {
   e.preventDefault();
 
   // Captura dos valores
@@ -35,64 +42,57 @@ form.addEventListener('submit', function(e) {
   const prazo = document.getElementById('prazo').value;
   const mensagem = document.getElementById('mensagem').value;
 
-  // Criação do pedido
   const pedido = { nome, email, telefone, tipo, prazo, mensagem };
   pedidos.push(pedido);
 
-  // Adiciona à lista visual
   adicionarPedido(pedido);
-
-  // Limpar formulário
   form.reset();
+  calcularLimitesResposta(); // Recalcular após reset
 
-  // Mostrar mensagem de sucesso
   mensagemSucesso.style.display = 'block';
   setTimeout(() => {
     mensagemSucesso.style.display = 'none';
   }, 3000);
 });
-document.addEventListener('DOMContentLoaded', () => {
-  const tipoCliente = document.getElementById('tipo-cliente');
-  const camposUnipessoal = document.getElementById('campos-unipessoal');
-  const camposEmpresa = document.getElementById('campos-empresa');
 
-  const campoPrazo = document.getElementById('prazo');
-  const avisoPrazo = document.getElementById('prazo-info');
-
-  tipoCliente.addEventListener('change', () => {
-    if (tipoCliente.value === 'unipessoal') {
-      camposUnipessoal.style.display = 'block';
-      camposEmpresa.style.display = 'none';
-    } else if (tipoCliente.value === 'empresa') {
-      camposEmpresa.style.display = 'block';
-      camposUnipessoal.style.display = 'none';
-    } else {
-      camposUnipessoal.style.display = 'none';
-      camposEmpresa.style.display = 'none';
+// Mostrar campos conforme tipo de cliente
+tipoClienteRadios.forEach(radio => {
+  radio.addEventListener('change', () => {
+    if (radio.value === 'unipessoal') {
+      camposUnipessoal.classList.add('ativo');
+      camposEmpresa.classList.remove('ativo');
+    } else if (radio.value === 'empresa') {
+      camposEmpresa.classList.add('ativo');
+      camposUnipessoal.classList.remove('ativo');
     }
   });
-
-  // Calcular data mínima de resposta com 72h e dias úteis
-  function calcularDataMinima() {
-    const agora = new Date();
-    let prazoMin = new Date(agora.getTime() + 72 * 60 * 60 * 1000); // +72h
-
-    while (prazoMin.getDay() === 0 || prazoMin.getDay() === 6) {
-      prazoMin.setDate(prazoMin.getDate() + 1);
-    }
-
-    const ano = prazoMin.getFullYear();
-    const mes = String(prazoMin.getMonth() + 1).padStart(2, '0');
-    const dia = String(prazoMin.getDate()).padStart(2, '0');
-    const dataFormatada = `${ano}-${mes}-${dia}`;
-
-    campoPrazo.min = dataFormatada;
-    campoPrazo.value = dataFormatada;
-    avisoPrazo.innerText = `A resposta será dada a partir de: ${dia}/${mes}/${ano}`;
-  }
-
-  if (campoPrazo && avisoPrazo) {
-    calcularDataMinima();
-  }
 });
 
+// Limites de resposta entre 1h30 e 48h a partir do agora
+function calcularLimitesResposta() {
+  const agora = new Date();
+
+  const minimo = new Date(agora.getTime() + (1.5 * 60 * 60 * 1000)); // +1h30
+  const maximo = new Date(agora.getTime() + (48 * 60 * 60 * 1000)); // +48h
+
+  const formatarDataHora = data => {
+    const ano = data.getFullYear();
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const dia = String(data.getDate()).padStart(2, '0');
+    const hora = String(data.getHours()).padStart(2, '0');
+    const minuto = String(data.getMinutes()).padStart(2, '0');
+    return `${ano}-${mes}-${dia}T${hora}:${minuto}`;
+  };
+
+  campoResposta.min = formatarDataHora(minimo);
+  campoResposta.max = formatarDataHora(maximo);
+  campoResposta.value = formatarDataHora(minimo);
+
+  avisoResposta.innerText = `A resposta será entre ${minimo.toLocaleString()} e ${maximo.toLocaleString()}`;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (campoResposta && avisoResposta) {
+    calcularLimitesResposta();
+  }
+});

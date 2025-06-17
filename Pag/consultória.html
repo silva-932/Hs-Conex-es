@@ -156,7 +156,7 @@
         <!-- Prazo de Resposta -->
         <div class="form-group">
           <label for="prazo"><i class="fa fa-calendar-alt"></i> Prazo de Resposta Desejado</label>
-          <input type="date" id="prazo" required>
+          <input type="datetime-local" id="prazo" required>
           <small id="prazo-info" class="prazo-info"></small>
         </div>
 
@@ -196,40 +196,32 @@
       const avisoPrazo = document.getElementById('prazo-info');
 
       tipoCliente.addEventListener('change', () => {
-        if (tipoCliente.value === 'unipessoal') {
-          camposUnipessoal.style.display = 'block';
-          camposEmpresa.style.display = 'none';
-        } else if (tipoCliente.value === 'empresa') {
-          camposEmpresa.style.display = 'block';
-          camposUnipessoal.style.display = 'none';
-        } else {
-          camposUnipessoal.style.display = 'none';
-          camposEmpresa.style.display = 'none';
-        }
+        camposUnipessoal.style.display = tipoCliente.value === 'unipessoal' ? 'block' : 'none';
+        camposEmpresa.style.display = tipoCliente.value === 'empresa' ? 'block' : 'none';
       });
 
-      // Calcular data mínima de 72h úteis
-      function calcularDataMinima() {
+      function calcularPrazo() {
         const agora = new Date();
-        let prazoMin = new Date(agora.getTime() + 72 * 60 * 60 * 1000); // +72h
+        const prazoMin = new Date(agora.getTime() + 1.5 * 60 * 60 * 1000); // 1h30m
+        const prazoMax = new Date(agora.getTime() + 48 * 60 * 60 * 1000); // 48h
 
-        while (prazoMin.getDay() === 0 || prazoMin.getDay() === 6) {
-          prazoMin.setDate(prazoMin.getDate() + 1);
-        }
+        const formatar = (data) => {
+          const y = data.getFullYear();
+          const m = String(data.getMonth() + 1).padStart(2, '0');
+          const d = String(data.getDate()).padStart(2, '0');
+          const h = String(data.getHours()).padStart(2, '0');
+          const min = String(data.getMinutes()).padStart(2, '0');
+          return `${y}-${m}-${d}T${h}:${min}`;
+        };
 
-        const ano = prazoMin.getFullYear();
-        const mes = String(prazoMin.getMonth() + 1).padStart(2, '0');
-        const dia = String(prazoMin.getDate()).padStart(2, '0');
-        const dataFormatada = `${ano}-${mes}-${dia}`;
+        campoPrazo.min = formatar(prazoMin);
+        campoPrazo.max = formatar(prazoMax);
+        campoPrazo.value = formatar(prazoMin);
 
-        campoPrazo.min = dataFormatada;
-        campoPrazo.value = dataFormatada;
-        avisoPrazo.innerText = `A resposta será dada a partir de: ${dia}/${mes}/${ano}`;
+        avisoPrazo.textContent = `Prazo mínimo: 1h30 | Prazo máximo: 48h após envio.`;
       }
 
-      if (campoPrazo && avisoPrazo) {
-        calcularDataMinima();
-      }
+      calcularPrazo();
     });
   </script>
 </body>
