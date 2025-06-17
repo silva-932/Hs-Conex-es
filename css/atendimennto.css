@@ -116,6 +116,14 @@
     transform: translateY(-2px);
   }
   
+  .mensagem-sucesso {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    color: #4caf50;
+    text-align: center;
+    display: none;
+  }
+  
   /* Área de respostas */
   .respostas-section {
     padding: 40px 20px;
