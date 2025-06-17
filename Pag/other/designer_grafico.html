@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atendimento | Designer Gráfico</title>
+  <link rel="stylesheet" href="atendimento.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Seção de Atendimento -->
+  <section class="atendimento-section">
+    <div class="atendimento-container">
+      <div class="atendimento-header">
+        <h1><i class="fas fa-paint-brush"></i> Atendimento Personalizado</h1>
+        <p>Preencha o formulário abaixo para solicitar seu projeto gráfico sob medida. A nossa equipa irá responder o mais breve possível.</p>
+      </div>
+
+      <!-- Formulário -->
+      <form id="design-form" class="form-box">
+        <div class="form-group">
+          <label for="nome"><i class="fa fa-user"></i> Nome Completo</label>
+          <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email"><i class="fa fa-envelope"></i> E-mail</label>
+          <input type="email" id="email" placeholder="Digite seu e-mail" required>
+        </div>
+
+        <div class="form-group">
+          <label for="tipo"><i class="fa fa-clipboard-list"></i> Tipo de Projeto</label>
+          <select id="tipo" required>
+            <option value="" disabled selected>Escolha uma opção</option>
+            <option>Cartão de Visita</option>
+            <option>Flyer/Folder</option>
+            <option>Logotipo</option>
+            <option>Identidade Visual</option>
+            <option>Outro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="mensagem"><i class="fa fa-comment"></i> Detalhes do Projeto</label>
+          <textarea id="mensagem" placeholder="Descreva o que você deseja..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-enviar"><i class="fa fa-paper-plane"></i> Enviar Pedido</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Área de Respostas -->
+  <section class="respostas-section">
+    <div class="respostas-container">
+      <h2>Pedidos Recebidos</h2>
+      <ul id="lista-pedidos"></ul>
+    </div>
+  </section>
+
+  <script src="atendimento.js"></script>
+</body>
+</html>
