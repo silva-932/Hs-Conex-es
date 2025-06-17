@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(120deg, #1a1a2e, #16213e);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  .header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #ffcc00;
+  }
+  
+  .header p {
+    font-size: 1.1rem;
+    color: #ccc;
+  }
+  
+  .form-section {
+    padding: 30px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  
+  input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #eee;
+    color: #333;
+    font-size: 1rem;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  .cta-btn {
+    padding: 12px 20px;
+    background: #ffcc00;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .cta-btn:hover {
+    background: #e6b800;
+  }
+  
+  .resumo {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 30px auto;
+    max-width: 800px;
+  }
+  
+  .resumo h2 {
+    margin-bottom: 15px;
+    color: #ffcc00;
+  }
+  
+  #listaAtendimentos {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  #listaAtendimentos li {
+    background: #333;
+    margin-bottom: 10px;
+    padding: 12px;
+    border-radius: 6px;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    margin-top: auto;
+  }
+  
+  /* Preloader */
+  #preloader {
+    position: fixed;
+    inset: 0;
+    background: #1a1a2e;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .spinner {
+    border: 8px solid #333;
+    border-top: 8px solid #ffcc00;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1.2s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
