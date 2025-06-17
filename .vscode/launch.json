@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Open index.html",
-            "file": "/Applications/XAMPP/xamppfiles/htdocs/Hs-conexões/index.html"
+            "file": "/Applications/XAMPP/xamppfiles/htdocs/Hs-conexõessss/index.html"
         }
     ]
 }

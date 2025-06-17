@@ -1,0 +1,53 @@
+/* Estilo das caixas de input e textarea */
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    z-index: 1;
+    position: relative;
+  }
+  
+  .formulario input,
+  .formulario textarea {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    padding: 12px 15px;
+    color: white;
+    font-size: 1rem;
+    resize: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+  }
+  
+  .formulario input::placeholder,
+  .formulario textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  .formulario input:focus,
+  .formulario textarea:focus {
+    outline: none;
+    border-color: #ffcc00;
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  /* Botão já está estilizado como .cta-btn, mas aqui está isolado */
+  .formulario .cta-btn {
+    background: #ffcc00;
+    color: black;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .formulario .cta-btn:hover {
+    background: #e6b800;
+  }
+  
