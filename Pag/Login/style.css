@@ -1,0 +1,121 @@
+/* Reset Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Fundo da Página */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d0b10, #8a2be2, #ff1493);
+    background-size: 200% 200%;
+    animation: gradientBG 10s infinite alternate;
+}
+
+/* Animação do Fundo */
+@keyframes gradientBG {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* Container do Formulário */
+.login-container {
+    position: relative;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    width: 350px;
+}
+
+/* Ícone do Usuário */
+.user-icon {
+    width: 80px;
+    height: 80px;
+    background: #5c007a;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+}
+
+/* Título */
+h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Campos de Entrada */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    outline: none;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+    top: -10px;
+    font-size: 12px;
+    color: #ffcc00;
+}
+
+/* Link Esqueceu a Senha */
+.forgot-password {
+    font-size: 12px;
+    color: #ffcc00;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Botão de Login */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #0056b3;
+}
+
+/* Responsividade */
+@media (max-width: 400px) {
+    .login-container {
+        width: 90%;
+    }
+}

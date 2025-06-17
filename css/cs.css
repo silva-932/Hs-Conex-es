@@ -1,0 +1,121 @@
+/* Reset Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* Conteúdo principal */
+.container {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    margin-top: 80px;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin-bottom: 30px;
+}
+
+/* Carrossel de Serviços */
+.carousel {
+    padding: 50px 0;
+    background: rgba(62, 62, 62, 0);
+    width: 100%;
+    align-self: center;
+    text-align: center;
+   
+}
+
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 20px;
+    scrollbar-width: none;
+}
+
+.carousel-item {
+    min-width: 300px;
+    background: rgba(255, 255, 255, 0.184);
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.carousel-item:hover {
+    transform: scale(1.05);
+}
+
+/* Seção Diferenciais */
+.diferenciais {
+    padding: 50px 0;
+    background: rgba(255, 255, 255, 0);
+}
+
+.diferenciais-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.diferencial-item {
+    background: rgba(255, 255, 255, 0.339);
+    padding: 20px;
+    border-radius: 10px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgb(0, 0, 0);
+}
+
+/* Depoimentos */
+.depoimentos {
+    padding: 50px 0;
+    background: rgba(255, 254, 254, 0);
+}
+
+.depoimentos-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.depoimento-item {
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgb(0, 0, 0);
+}
+h1,h2,h3,h4,h5{
+    color: rgb(255, 174, 0);
+}
+.diferencial-item{
+    color: rgb(255, 255, 255);
+}
+i{
+    color: rgb(255, 174, 0);
+}
