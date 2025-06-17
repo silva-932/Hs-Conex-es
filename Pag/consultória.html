@@ -27,11 +27,42 @@
 
       <!-- Formulário -->
       <form id="design-form" class="form-box">
+        
+        <!-- Tipo de Cliente -->
         <div class="form-group">
-          <label for="nome"><i class="fa fa-user"></i> Nome Completo</label>
-          <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+          <label><i class="fa fa-user-check"></i> Tipo de Cliente</label>
+          <select id="tipo-cliente" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="unipessoal">Unipessoal</option>
+            <option value="empresa">Empresa</option>
+          </select>
         </div>
 
+        <!-- Campos Unipessoal -->
+        <div id="campos-unipessoal" class="form-group" style="display: none;">
+          <label for="nome-unipessoal"><i class="fa fa-user"></i> Primeiro e Último Nome</label>
+          <input type="text" id="nome-unipessoal" placeholder="Digite seu nome completo">
+
+          <label for="nif-unipessoal"><i class="fa fa-id-card"></i> Nº do BI / NIF</label>
+          <input type="text" id="nif-unipessoal" placeholder="Ex: 001234567LA045">
+        </div>
+
+        <!-- Campos Empresa -->
+        <div id="campos-empresa" class="form-group" style="display: none;">
+          <label for="nome-empresa"><i class="fa fa-building"></i> Nome da Empresa</label>
+          <input type="text" id="nome-empresa" placeholder="Digite o nome da empresa">
+
+          <label for="nif-empresa"><i class="fa fa-id-badge"></i> NIF da Empresa</label>
+          <input type="text" id="nif-empresa" placeholder="Ex: 5412345678">
+
+          <label for="setor-empresa"><i class="fa fa-briefcase"></i> Setor (opcional)</label>
+          <input type="text" id="setor-empresa" placeholder="Tecnologia, Saúde, Educação...">
+
+          <label for="site-empresa"><i class="fa fa-globe"></i> Website (opcional)</label>
+          <input type="url" id="site-empresa" placeholder="https://suaempresa.com">
+        </div>
+
+        <!-- Contato -->
         <div class="form-group">
           <label for="email"><i class="fa fa-envelope"></i> E-mail</label>
           <input type="email" id="email" placeholder="Digite seu e-mail" required>
@@ -42,6 +73,7 @@
           <input type="tel" id="telefone" placeholder="Ex: +244 923 000 000">
         </div>
 
+        <!-- Tipo de Serviço -->
         <div class="form-group">
           <label for="tipo"><i class="fa fa-clipboard-list"></i> Tipo de Serviço</label>
           <select id="tipo" required>
@@ -120,19 +152,21 @@
             </optgroup>
           </select>
         </div>
-        
 
+        <!-- Prazo de Resposta -->
         <div class="form-group">
-          <label for="prazo"><i class="fa fa-calendar-alt"></i> Prazo de Entrega</label>
+          <label for="prazo"><i class="fa fa-calendar-alt"></i> Prazo de Resposta Desejado</label>
           <input type="date" id="prazo" required>
           <small id="prazo-info" class="prazo-info"></small>
         </div>
 
+        <!-- Arquivo de Referência -->
         <div class="form-group">
           <label for="arquivo"><i class="fa fa-paperclip"></i> Arquivo de Referência (opcional)</label>
           <input type="file" id="arquivo" accept=".jpg,.png,.pdf,.docx">
         </div>
 
+        <!-- Mensagem -->
         <div class="form-group">
           <label for="mensagem"><i class="fa fa-comment"></i> Detalhes da Necessidade</label>
           <textarea id="mensagem" placeholder="Descreva o seu problema ou necessidade..." required></textarea>
@@ -151,6 +185,52 @@
     </div>
   </section>
 
-  <script src="../Js/atendimento.js"></script>
+  <!-- JS para comportamento dinâmico -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tipoCliente = document.getElementById('tipo-cliente');
+      const camposUnipessoal = document.getElementById('campos-unipessoal');
+      const camposEmpresa = document.getElementById('campos-empresa');
+
+      const campoPrazo = document.getElementById('prazo');
+      const avisoPrazo = document.getElementById('prazo-info');
+
+      tipoCliente.addEventListener('change', () => {
+        if (tipoCliente.value === 'unipessoal') {
+          camposUnipessoal.style.display = 'block';
+          camposEmpresa.style.display = 'none';
+        } else if (tipoCliente.value === 'empresa') {
+          camposEmpresa.style.display = 'block';
+          camposUnipessoal.style.display = 'none';
+        } else {
+          camposUnipessoal.style.display = 'none';
+          camposEmpresa.style.display = 'none';
+        }
+      });
+
+      // Calcular data mínima de 72h úteis
+      function calcularDataMinima() {
+        const agora = new Date();
+        let prazoMin = new Date(agora.getTime() + 72 * 60 * 60 * 1000); // +72h
+
+        while (prazoMin.getDay() === 0 || prazoMin.getDay() === 6) {
+          prazoMin.setDate(prazoMin.getDate() + 1);
+        }
+
+        const ano = prazoMin.getFullYear();
+        const mes = String(prazoMin.getMonth() + 1).padStart(2, '0');
+        const dia = String(prazoMin.getDate()).padStart(2, '0');
+        const dataFormatada = `${ano}-${mes}-${dia}`;
+
+        campoPrazo.min = dataFormatada;
+        campoPrazo.value = dataFormatada;
+        avisoPrazo.innerText = `A resposta será dada a partir de: ${dia}/${mes}/${ano}`;
+      }
+
+      if (campoPrazo && avisoPrazo) {
+        calcularDataMinima();
+      }
+    });
+  </script>
 </body>
 </html>

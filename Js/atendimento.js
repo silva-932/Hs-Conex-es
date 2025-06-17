@@ -50,33 +50,49 @@ form.addEventListener('submit', function(e) {
   setTimeout(() => {
     mensagemSucesso.style.display = 'none';
   }, 3000);
-  document.addEventListener('DOMContentLoaded', () => {
-    const campoPrazo = document.getElementById('prazo');
-    const avisoPrazo = document.getElementById('prazo-info');
-  
-    function calcularDataMinima() {
-      const agora = new Date();
-      let prazoMin = new Date(agora.getTime() + 72 * 60 * 60 * 1000); // +72h
-  
-      // Avança se for fim de semana (0 = domingo, 6 = sábado)
-      while (prazoMin.getDay() === 0 || prazoMin.getDay() === 6) {
-        prazoMin.setDate(prazoMin.getDate() + 1);
-      }
-  
-      const ano = prazoMin.getFullYear();
-      const mes = String(prazoMin.getMonth() + 1).padStart(2, '0');
-      const dia = String(prazoMin.getDate()).padStart(2, '0');
-      const dataFormatada = `${ano}-${mes}-${dia}`;
-  
-      campoPrazo.min = dataFormatada;
-      campoPrazo.value = dataFormatada;
-  
-      avisoPrazo.innerText = `A data mínima de entrega é: ${dia}/${mes}/${ano}`;
-    }
-  
-    if (campoPrazo && avisoPrazo) {
-      calcularDataMinima();
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const tipoCliente = document.getElementById('tipo-cliente');
+  const camposUnipessoal = document.getElementById('campos-unipessoal');
+  const camposEmpresa = document.getElementById('campos-empresa');
+
+  const campoPrazo = document.getElementById('prazo');
+  const avisoPrazo = document.getElementById('prazo-info');
+
+  tipoCliente.addEventListener('change', () => {
+    if (tipoCliente.value === 'unipessoal') {
+      camposUnipessoal.style.display = 'block';
+      camposEmpresa.style.display = 'none';
+    } else if (tipoCliente.value === 'empresa') {
+      camposEmpresa.style.display = 'block';
+      camposUnipessoal.style.display = 'none';
+    } else {
+      camposUnipessoal.style.display = 'none';
+      camposEmpresa.style.display = 'none';
     }
   });
-  
+
+  // Calcular data mínima de resposta com 72h e dias úteis
+  function calcularDataMinima() {
+    const agora = new Date();
+    let prazoMin = new Date(agora.getTime() + 72 * 60 * 60 * 1000); // +72h
+
+    while (prazoMin.getDay() === 0 || prazoMin.getDay() === 6) {
+      prazoMin.setDate(prazoMin.getDate() + 1);
+    }
+
+    const ano = prazoMin.getFullYear();
+    const mes = String(prazoMin.getMonth() + 1).padStart(2, '0');
+    const dia = String(prazoMin.getDate()).padStart(2, '0');
+    const dataFormatada = `${ano}-${mes}-${dia}`;
+
+    campoPrazo.min = dataFormatada;
+    campoPrazo.value = dataFormatada;
+    avisoPrazo.innerText = `A resposta será dada a partir de: ${dia}/${mes}/${ano}`;
+  }
+
+  if (campoPrazo && avisoPrazo) {
+    calcularDataMinima();
+  }
 });
+
