@@ -388,14 +388,14 @@ footer {
   }
   
   .footer-logo h2 {
-    color: #ffcc00;
+    color: #ffb300;
     margin-bottom: 5px;
   }
   
   .footer-links h3,
   .footer-social h3 {
     margin-bottom: 10px;
-    color: #ffcc00;
+    color: #ffb300;
   }
   
   .footer-links ul {
@@ -438,7 +438,7 @@ footer {
 
 /* Cores e destaque */
 h1, h2, h3, h4, h5 {
-    color: rgb(255, 174, 0);
+    color: #ffcc00;
 }
 
 .b {
