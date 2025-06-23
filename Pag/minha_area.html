@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Minha Área | HS Conexões</title>
+  <link rel="icon" href="../img/icon.png" type="image/png">
+  <link rel="stylesheet" href="../css/minha_area.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+<body>
+
+  <!-- AVISO DE SESSÃO EXPIRADA -->
+  <div id="sessao-expirada">Sessão expirada. Redirecionando para o login...</div>
+
+  <!-- HEADER -->
+  <header class="top-bar">
+    <div class="logo">HS Conexões</div>
+    <div class="user-controls">
+        <a class="entrar" href="../index.html" id="entrarBtn"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Início</a>
+        <a class="sair" id="sairBtn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="main-area">
+    <section class="welcome">
+      <h1>Bem-vindo, <span id="user-nome">Usuário</span>!</h1>
+      <p>Aqui você pode acompanhar seus pedidos, atualizar seu perfil e muito mais.</p>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <i class="fas fa-folder-open"></i>
+        <h3>Meus Pedidos</h3>
+        <p>Acompanhe o andamento dos seus serviços solicitados.</p>
+        <a href="#" class="card-btn">Ver Pedidos</a>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-user-edit"></i>
+        <h3>Atualizar Perfil</h3>
+        <p>Edite seu nome, email e outras informações pessoais.</p>
+        <a href="#" class="card-btn">Editar Perfil</a>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Segurança</h3>
+        <p>Altere sua senha ou ative autenticação em dois fatores.</p>
+        <a href="#" class="card-btn">Segurança</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="footer">
+    <p>&copy; 2024 HS Conexões — Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- VERIFICAÇÃO DE LOGIN -->
+  <script>
+    // Verificação imediata ANTES de mostrar conteúdo
+    const isLoggedIn = localStorage.getItem("userLoggedIn");
+
+    if (!isLoggedIn) {
+      const aviso = document.getElementById("sessao-expirada");
+      aviso.style.display = "block";
+      setTimeout(() => {
+        window.location.href = "../login.html";
+      }, 2000); // 2 segundos de espera para mostrar aviso
+    } else {
+      // DOM só manipulado se estiver logado
+      document.addEventListener("DOMContentLoaded", () => {
+        const email = localStorage.getItem("userEmail") || "Usuário";
+        document.getElementById("user-nome").innerText = email;
+
+        document.getElementById("sairBtn").addEventListener("click", () => {
+          localStorage.removeItem("userLoggedIn");
+          localStorage.removeItem("userEmail");
+          window.location.href = "../login.html";
+        });
+      });
+    }
+  </script>
+</body>
+</html>

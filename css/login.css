@@ -27,19 +27,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem;
   animation: fadeIn 1.2s ease-in-out;
 }
 
 .login-imagem img {
-  max-width: 90%;
-  height: auto;
+  max-width: 105%;
+  height: 200%;
 }
 
 /* Lado do formulário */
 .login-formulario {
   flex: 1;
-  background: linear-gradient(to left, #0f2027, #203a43, #2c5364);
+  /*background: linear-gradient(to left, #0f2027, #203a43, #2c5364);*/
+  background-color: rgb(0, 0, 0);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,19 +49,19 @@ body {
 
 /* Container do formulário */
 .container {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.407);
   padding: 2.5rem;
   border-radius: 16px;
   width: 100%;
   max-width: 400px;
   backdrop-filter: blur(10px);
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 50px #ff9d00;
 }
 
 h2 {
   margin-bottom: 1.5rem;
   text-align: center;
-  color: #00ffe1;
+  color: #ff9d00;
   font-weight: 600;
 }
 
@@ -83,7 +84,7 @@ input {
 }
 
 input::placeholder {
-  color: #ccc;
+  color: #ffffff;
 }
 
 input:focus {
@@ -93,7 +94,7 @@ input:focus {
 /* Botão */
 button {
   padding: 0.9rem;
-  background-color: #00c896;
+  background-color: #ff9d00;
   border: none;
   color: #fff;
   font-weight: bold;
@@ -104,7 +105,7 @@ button {
 }
 
 button:hover {
-  background-color: #00a37c;
+  background-color: #855304;
   transform: translateY(-1px);
 }
 
@@ -120,14 +121,14 @@ button:hover {
 }
 
 .mensagem-sucesso {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #686868;
+  color: #ff9d00;
   border: 1px solid #c3e6cb;
 }
 
 .mensagem-erro {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: #ff0000;
+  color: white;
   border: 1px solid #f5c6cb;
 }
 

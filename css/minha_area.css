@@ -1,0 +1,162 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a, #2c2c54);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* TOPO */
+  .top-bar {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .top-bar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffcc00;
+  }
+  
+  .user-controls a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    background: #055412;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: background 0.3s;
+  }
+  
+  .user-controls a:hover {
+    background: #c72f3c;
+  }
+  
+  /* CONTEÚDO */
+  .main-area {
+    padding: 2rem;
+    flex: 1;
+  }
+  
+  .welcome {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .welcome h1 {
+    font-size: 2.5rem;
+    color: #ffcc00;
+    margin-bottom: 10px;
+  }
+  
+  .welcome p {
+    font-size: 1.1rem;
+    color: #ddd;
+  }
+  
+  /* CARDS */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+  
+  .card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  }
+  
+  .card i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #ffcc00;
+  }
+  
+  .card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card p {
+    font-size: 0.95rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+  }
+  
+  .card-btn {
+    display: inline-block;
+    background: #00c896;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+  
+  .card-btn:hover {
+    background: #009f75;
+  }
+  
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #bbb;
+  }
+  #sessao-expirada {
+    display: none;
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.1rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    animation: fadein 0.5s ease-in-out;
+  }
+
+  @keyframes fadein {
+    from { opacity: 0; top: -50px; }
+    to { opacity: 1; top: 0; }
+  }
+  
+  /* RESPONSIVO */
+  @media (max-width: 600px) {
+    .welcome h1 {
+      font-size: 2rem;
+    }
+  
+    .card i {
+      font-size: 2rem;
+    }
+  }
+  

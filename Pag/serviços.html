@@ -2,6 +2,7 @@
 <html lang="pt-PT">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Cache-Control" content="no-store" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HS-CONEXÕES | Serviços</title>
 
@@ -11,6 +12,15 @@
 </head>
 <body>
 
+<!-- ALERTA PERSONALIZADO -->
+<div id="custom-alert" class="custom-alert">
+  <div class="alert-content">
+    <p id="alert-message">Mensagem de alerta</p>
+    <button onclick="fecharAlerta()">OK</button>
+  </div>
+</div>
+
+<!-- Preloader -->
 <div id="preloader">
   <div class="loader"></div>
 </div>
@@ -26,6 +36,7 @@
     <li><a class="active">Serviços</a></li>
     <li><a href="../Pag/Sobre.html">Sobre Nós</a></li>
     <li><a href="../Pag/contacto.html">Contactos</a></li>
+    <li><a href="../Pag/minha_area.html" id="minha-area-link" style="display: none;">Minha Área</a></li>
     <li><a href="#" id="logout-link" onclick="logout()">Sair</a></li>
   </ul>
 </nav>
@@ -113,19 +124,20 @@
     const toggle = document.getElementById("menu-toggle");
     const navLinks = document.getElementById("nav-links");
     const logoutLink = document.getElementById("logout-link");
+    const minhaAreaLink = document.getElementById("minha-area-link");
     const botoes = document.querySelectorAll('.cta-btn');
     const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
 
-    // Mostrar ou esconder botão "Sair"
+    // Mostrar ou esconder botões
     logoutLink.style.display = isLoggedIn ? 'inline-block' : 'none';
+    minhaAreaLink.style.display = isLoggedIn ? 'inline-block' : 'none';
 
     // Bloqueio nos botões "Solicitar" se não estiver logado
     botoes.forEach(botao => {
       botao.addEventListener('click', function (e) {
         if (!isLoggedIn) {
           e.preventDefault();
-          alert('Acesso restrito. Por favor, faça login para solicitar um serviço.');
-          window.location.href = '../login.html';
+          mostrarAlerta('Acesso restrito. Por favor, faça login para solicitar um serviço.');
         }
       });
     });
@@ -146,6 +158,16 @@
 
   function logout() {
     localStorage.removeItem('userLoggedIn');
+    window.location.href = '../login.html';
+  }
+
+  function mostrarAlerta(mensagem) {
+    document.getElementById('alert-message').innerText = mensagem;
+    document.getElementById('custom-alert').style.display = 'flex';
+  }
+
+  function fecharAlerta() {
+    document.getElementById('custom-alert').style.display = 'none';
     window.location.href = '../login.html';
   }
 
