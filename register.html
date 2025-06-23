@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro</title>
+</head>
+<body>
+  <h2>Cadastro</h2>
+  <form id="formRegister">
+    <input type="email" id="email" placeholder="Email" required><br><br>
+    <input type="password" id="senha" placeholder="Senha" required><br><br>
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <p id="mensagem"></p>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById('formRegister');
+      const mensagem = document.getElementById('mensagem');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Impede o recarregamento da página
+
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
+
+        try {
+          const resposta = await fetch('/.netlify/functions/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, senha })
+          });
+
+          const dados = await resposta.json();
+
+          if (resposta.ok) {
+            mensagem.innerText = '✅ ' + dados.message;
+            mensagem.style.color = 'green';
+          } else {
+            mensagem.innerText = '❌ ' + (dados.error || 'Erro ao cadastrar');
+            mensagem.style.color = 'red';
+          }
+        } catch (erro) {
+          console.error('Erro na requisição:', erro);
+          mensagem.innerText = '❌ Erro na requisição';
+          mensagem.style.color = 'red';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
