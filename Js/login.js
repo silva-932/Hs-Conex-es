@@ -1,24 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const alerta = document.getElementById('mensagem-alerta');
+
+  function mostrarMensagem(mensagem, tipo) {
+    alerta.textContent = mensagem;
+    alerta.className = 'mensagem-alerta ' + (tipo === 'sucesso' ? 'mensagem-sucesso' : 'mensagem-erro');
+    alerta.style.display = 'block';
+  }
+
   // LOGIN
   document.getElementById('login-form').addEventListener('submit', async function (e) {
     e.preventDefault();
     const email = document.getElementById('login-email').value;
     const senha = document.getElementById('login-senha').value;
 
-    const res = await fetch('/.netlify/functions/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, senha })
-    });
+    try {
+      const res = await fetch('/.netlify/functions/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, senha })
+      });
 
-    const data = await res.json();
-    alert(data.message);
+      const data = await res.json();
 
-    if (res.ok) {
-      // Corrigido para 'userLoggedIn'
-      localStorage.setItem('userLoggedIn', 'true');
-      localStorage.setItem('userEmail', email); // opcional, se quiser guardar o e-mail
-      window.location.href = '../Pag/serviços.html';
+      if (res.ok) {
+        mostrarMensagem(data.message, 'sucesso');
+        localStorage.setItem('userLoggedIn', 'true');
+        localStorage.setItem('userEmail', email);
+        setTimeout(() => {
+          window.location.href = '../Pag/serviços.html';
+        }, 1500);
+      } else {
+        mostrarMensagem(data.message || 'Erro ao iniciar sessão.', 'erro');
+      }
+    } catch (erro) {
+      mostrarMensagem('Falha na conexão com o servidor.', 'erro');
     }
   });
 
@@ -28,19 +43,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const email = document.getElementById('register-email').value;
     const senha = document.getElementById('register-senha').value;
 
-    const res = await fetch('/.netlify/functions/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, senha })
-    });
+    try {
+      const res = await fetch('/.netlify/functions/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, senha })
+      });
 
-    const data = await res.json();
-    alert(data.message);
+      const data = await res.json();
 
-    if (res.ok) {
-      localStorage.setItem('userLoggedIn', 'true');
-      localStorage.setItem('userEmail', email); // opcional
-      window.location.href = '../Pag/serviços.html';
+      if (res.ok) {
+        mostrarMensagem(data.message, 'sucesso');
+        localStorage.setItem('userLoggedIn', 'true');
+        localStorage.setItem('userEmail', email);
+        setTimeout(() => {
+          window.location.href = '../Pag/serviços.html';
+        }, 1500);
+      } else {
+        mostrarMensagem(data.message || 'Erro ao cadastrar.', 'erro');
+      }
+    } catch (erro) {
+      mostrarMensagem('Falha na conexão com o servidor.', 'erro');
     }
   });
 });

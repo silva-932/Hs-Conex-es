@@ -1,52 +1,165 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: sans-serif;
-    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f2027;
+  color: #fff;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Estrutura dividida */
+.login-dividido {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Lado da imagem */
+.login-imagem {
+  flex: 1;
+  background: linear-gradient(to bottom right, #1a2a3a, #0f2027);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.login-imagem img {
+  max-width: 90%;
+  height: auto;
+}
+
+/* Lado do formulário */
+.login-formulario {
+  flex: 1;
+  background: linear-gradient(to left, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Container do formulário */
+.container {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2.5rem;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 400px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #00ffe1;
+  font-weight: 600;
+}
+
+/* Formulário */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  outline: none;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+input:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Botão */
+button {
+  padding: 0.9rem;
+  background-color: #00c896;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #00a37c;
+  transform: translateY(-1px);
+}
+
+/* Alertas personalizados */
+.mensagem-alerta {
+  display: none;
+  padding: 12px 18px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.mensagem-sucesso {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.mensagem-erro {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Animação suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .login-dividido {
+    flex-direction: column-reverse;
+  }
+
+  .login-imagem {
+    display: none;
+  }
+
+  .login-formulario {
+    flex: 1;
+    padding: 1.5rem;
+  }
+
   .container {
-    background: rgba(0, 0, 0, 0.6);
     padding: 2rem;
     border-radius: 12px;
-    max-width: 400px;
-    width: 100%;
   }
-  
-  h2 {
-    margin-bottom: 0.5rem;
-    text-align: center;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
-  
-  input {
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: none;
-    border-radius: 8px;
-  }
-  
-  button {
-    padding: 0.75rem;
-    background-color: #00c896;
-    border: none;
-    color: #fff;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #009f75;
-  }
-  
+}
