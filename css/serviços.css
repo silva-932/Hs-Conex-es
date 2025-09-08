@@ -1,4 +1,4 @@
-/* Reset Geral */
+/* ----------------- RESET ----------------- */
 * {
   margin: 0;
   padding: 0;
@@ -7,35 +7,7 @@
   scroll-behavior: smooth;
 }
 
-/* Preloader */
-#preloader {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: #0f172a;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.loader {
-  width: 50px;
-  height: 50px;
-  border: 5px solid #2563eb;
-  border-top: 5px solid transparent;
-  border-radius: 50%;
-  animation: spin 3s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(1000deg);
-  }
-}
-
+/* ----------------- BODY ----------------- */
 body {
   display: flex;
   flex-direction: column;
@@ -54,65 +26,13 @@ body::before {
   z-index: 0;
 }
 
-/* ALERTA PERSONALIZADO */
-.custom-alert {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(15, 15, 15, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  display: none;
-}
-
-.alert-content {
-  background: #fff;
-  color: #1e293b;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  max-width: 90%;
-  width: 350px;
-  animation: fadeIn 0.3s ease;
-}
-
-.alert-content p {
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-}
-
-.alert-content button {
-  padding: 10px 20px;
-  background-color: #2563eb;
-  border: none;
-  color: white;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.alert-content button:hover {
-  background-color: #1d4ed8;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* Navbar responsiva estilizada */
+/* ----------------- NAVBAR ----------------- */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.95);
   backdrop-filter: blur(12px);
   display: flex;
   justify-content: space-between;
@@ -147,56 +67,12 @@ body::before {
   transform: scale(1.05);
 }
 
-.navbar .nav-links li .active {
-  background: #2563eb;
-  color: white;
-}
-/* --- AJUSTES NAVBAR --- */
-
-/* Garantir consistência em todos os <li> */
-.navbar .nav-links li {
-  list-style: none;
-}
-
-/* Garantir que todos os links (inclusive Minha Área e Sair) tenham o mesmo estilo */
-.navbar .nav-links li a {
-  display: block;
-  color: white;
-  text-decoration: none;
-  padding: 10px 15px;
-  border-radius: 12px;
-  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
-  font-weight: 500;
-  white-space: nowrap; /* evita quebra em mobile */
-}
-
-/* Hover */
-.navbar .nav-links li a:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: scale(1.05);
-}
-
-/* Link ativo */
 .navbar .nav-links li a.active {
   background: #2563eb;
   color: white;
 }
 
-/* Garante espaço entre links no desktop */
-.navbar .nav-links {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  list-style: none;
-}
-
-/* Botões controlados via JS */
-#minha-area-link,
-#logout-link {
-  display: none; /* aparecem só quando logado */
-}
-
-
+/* Botão toggle para mobile */
 .menu-toggle {
   display: none;
   font-size: 1.8rem;
@@ -204,13 +80,14 @@ body::before {
   cursor: pointer;
 }
 
-/* Container principal */
+/* ----------------- CONTAINER ----------------- */
 .container {
   position: relative;
   z-index: 1;
   padding: 120px 20px 40px;
   max-width: 1200px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .title {
@@ -225,20 +102,16 @@ body::before {
   margin-bottom: 40px;
   max-width: 800px;
   color: #f8fafc;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Seção de serviços */
-.services h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #fff;
-  text-align: center;
-}
-
+/* ----------------- SERVICES ----------------- */
 .services {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 25px;
+  justify-items: center;
 }
 
 .service-item {
@@ -289,7 +162,7 @@ body::before {
   background: #1d4ed8;
 }
 
-/* FOOTER */
+/* ----------------- FOOTER ----------------- */
 footer {
   background: #0f172a;
   padding: 40px 20px;
@@ -300,22 +173,22 @@ footer {
 
 .footer-container {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 20px;
 }
 
-.footer-logo h2 {
-  color: #fff;
-  margin-bottom: 5px;
+.footer-column {
+  text-align: center;
+  min-width: 220px;
 }
 
-.footer-links h3,
-.footer-social h3 {
-  margin-bottom: 10px;
-  color: #fff;
+.footer-column h4 {
+  color: #2563eb;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
 }
 
 .footer-links ul {
@@ -323,39 +196,39 @@ footer {
   padding: 0;
 }
 
-.footer-links li {
+.footer-links ul li {
   margin-bottom: 8px;
 }
 
-.footer-links a {
-  color: #f8fafc;
+.footer-links ul li a {
+  color: #cbd5e1;
   text-decoration: none;
   transition: 0.3s;
 }
 
-.footer-links a:hover {
+.footer-links ul li a:hover {
   color: #38bdf8;
 }
 
 .footer-social a {
-  color: #f8fafc;
   font-size: 1.4rem;
-  margin-right: 15px;
+  margin-right: 12px;
+  color: #cbd5e1;
   transition: 0.3s;
 }
 
 .footer-social a:hover {
-  color: #38bdf8;
+  color: #2563eb;
 }
 
 .footer-bottom {
+  margin-top: 30px;
   text-align: center;
-  margin-top: 20px;
   color: #94a3b8;
   font-size: 0.9rem;
 }
 
-/* RESPONSIVO */
+/* ----------------- RESPONSIVO ----------------- */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
@@ -390,12 +263,6 @@ footer {
     border-bottom: none;
   }
 
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
-
   .container {
     padding: 140px 15px 40px;
     text-align: center;
@@ -403,5 +270,11 @@ footer {
 
   .services {
     grid-template-columns: 1fr;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
   }
 }
