@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -12,7 +12,7 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  background: #000;
+  background: #0f172a;
   z-index: 9999;
   top: 0;
   left: 0;
@@ -24,10 +24,10 @@
 .loader {
   width: 50px;
   height: 50px;
-  border: 5px solid #ffcc00;
+  border: 5px solid #2563eb;
   border-top: 5px solid transparent;
   border-radius: 50%;
-  animation: spin 5s linear infinite;
+  animation: spin 3s linear infinite;
 }
 
 @keyframes spin {
@@ -41,7 +41,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   background: url('../css/Infraestrutura-de-rede.webp') no-repeat center center/cover;
-  color: white;
+  color: #1e293b;
   position: relative;
   overflow-x: hidden;
 }
@@ -50,7 +50,7 @@ body::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.85), rgba(138, 43, 226, 0.5), rgba(255, 20, 147, 0.3));
+  background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(124, 58, 237, 0.5), rgba(56, 189, 248, 0.3));
   z-index: 0;
 }
 
@@ -71,10 +71,10 @@ body::before {
 
 .alert-content {
   background: #fff;
-  color: #333;
+  color: #1e293b;
   padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   text-align: center;
   max-width: 90%;
   width: 350px;
@@ -88,16 +88,17 @@ body::before {
 
 .alert-content button {
   padding: 10px 20px;
-  background-color: #ff9500;
+  background-color: #2563eb;
   border: none;
   color: white;
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
 .alert-content button:hover {
-  background-color: #774500;
+  background-color: #1d4ed8;
 }
 
 @keyframes fadeIn {
@@ -112,11 +113,11 @@ body::before {
   left: 0;
   width: 100%;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 30px;
+  padding: 12px 30px;
   z-index: 999;
 }
 
@@ -136,20 +137,65 @@ body::before {
   color: white;
   text-decoration: none;
   padding: 10px 15px;
-  border-radius: 15px;
+  border-radius: 12px;
   transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .navbar .nav-links li a:hover {
-  background: rgba(255, 255, 255, 0.5);
-  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
 }
 
 .navbar .nav-links li .active {
-  background: rgba(255, 255, 255, 0.7);
-  color: black;
+  background: #2563eb;
+  color: white;
 }
+/* --- AJUSTES NAVBAR --- */
+
+/* Garantir consistência em todos os <li> */
+.navbar .nav-links li {
+  list-style: none;
+}
+
+/* Garantir que todos os links (inclusive Minha Área e Sair) tenham o mesmo estilo */
+.navbar .nav-links li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 12px;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  font-weight: 500;
+  white-space: nowrap; /* evita quebra em mobile */
+}
+
+/* Hover */
+.navbar .nav-links li a:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+/* Link ativo */
+.navbar .nav-links li a.active {
+  background: #2563eb;
+  color: white;
+}
+
+/* Garante espaço entre links no desktop */
+.navbar .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+}
+
+/* Botões controlados via JS */
+#minha-area-link,
+#logout-link {
+  display: none; /* aparecem só quando logado */
+}
+
 
 .menu-toggle {
   display: none;
@@ -171,79 +217,85 @@ body::before {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #ffcc00;
+  color: #fff;
 }
 
 .subtitle {
   font-size: 1.2rem;
   margin-bottom: 40px;
   max-width: 800px;
+  color: #f8fafc;
 }
 
 /* Seção de serviços */
 .services h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #ffffff;
+  color: #fff;
+  text-align: center;
 }
 
 .services {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 25px;
 }
 
 .service-item {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 25px;
+  border-radius: 16px;
   backdrop-filter: blur(6px);
   text-align: center;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .service-item:hover {
-  transform: scale(1.03);
-  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
 }
 
 .service-item i {
   font-size: 2.5rem;
   margin-bottom: 15px;
-  color: #ffcc00;
+  color: #2563eb;
 }
 
 .service-item h3 {
   font-size: 1.3rem;
   margin-bottom: 10px;
-  color: #ffffff;
+  color: #1e293b;
 }
 
 .service-item p {
   font-size: 0.95rem;
   margin-bottom: 15px;
+  color: #334155;
 }
 
 .cta-btn {
-  background: #ffcc00;
-  color: black;
+  background: #2563eb;
+  color: white;
   border: none;
   padding: 10px 18px;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
+  font-weight: 500;
 }
 
 .cta-btn:hover {
-  background: #e6b800;
+  background: #1d4ed8;
 }
 
 /* FOOTER */
 footer {
-  background: rgba(0, 0, 0, 0.85);
-  padding: 30px 20px;
+  background: #0f172a;
+  padding: 40px 20px;
   margin-top: auto;
   z-index: 2;
+  color: #f8fafc;
 }
 
 .footer-container {
@@ -256,14 +308,14 @@ footer {
 }
 
 .footer-logo h2 {
-  color: #ffcc00;
+  color: #fff;
   margin-bottom: 5px;
 }
 
 .footer-links h3,
 .footer-social h3 {
   margin-bottom: 10px;
-  color: #ffcc00;
+  color: #fff;
 }
 
 .footer-links ul {
@@ -276,30 +328,30 @@ footer {
 }
 
 .footer-links a {
-  color: white;
+  color: #f8fafc;
   text-decoration: none;
   transition: 0.3s;
 }
 
 .footer-links a:hover {
-  color: #ffcc00;
+  color: #38bdf8;
 }
 
 .footer-social a {
-  color: white;
+  color: #f8fafc;
   font-size: 1.4rem;
   margin-right: 15px;
   transition: 0.3s;
 }
 
 .footer-social a:hover {
-  color: #ffcc00;
+  color: #38bdf8;
 }
 
 .footer-bottom {
   text-align: center;
   margin-top: 20px;
-  color: #aaa;
+  color: #94a3b8;
   font-size: 0.9rem;
 }
 
@@ -313,7 +365,7 @@ footer {
     position: absolute;
     top: 60px;
     right: 20px;
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(15, 23, 42, 0.95);
     flex-direction: column;
     width: 220px;
     border-radius: 12px;

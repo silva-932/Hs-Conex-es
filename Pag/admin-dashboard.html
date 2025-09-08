@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Minha Área | HS Conexões</title>
+  <link rel="icon" href="../img/icon.png" type="image/png">
+  <link rel="stylesheet" href="../css/minha_area.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">HS Conexões</div>
+    <a href="../index.html"><i class="fa fa-home"></i> Início</a>
+    <a href="#" id="linkPedidos"><i class="fa fa-folder-open"></i> Meus Pedidos</a>
+    <a href="#"><i class="fa fa-user-edit"></i> Perfil</a>
+    <a href="#"><i class="fa fa-shield-alt"></i> Segurança</a>
+    <a href="#" id="sairBtn"><i class="fa fa-sign-out-alt"></i> Sair</a>
+  </aside>
+
+  <!-- Conteúdo principal -->
+  <div class="main-content">
+    <header class="top-bar">
+      <div class="user">
+        <i class="fa fa-user-circle"></i> <span id="user-nome">Usuário</span>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <h1>Minha Área</h1>
+      <section class="cards">
+        <div class="card">
+          <i class="fas fa-folder-open"></i>
+          <h3>Meus Pedidos</h3>
+          <p>Acompanhe o andamento dos seus serviços solicitados.</p>
+          <a href="#" class="card-btn" id="verPedidosBtn">Ver Pedidos</a>
+        </div>
+
+        <div class="card">
+          <i class="fas fa-user-edit"></i>
+          <h3>Atualizar Perfil</h3>
+          <p>Edite seu nome, email e outras informações pessoais.</p>
+          <a href="#" class="card-btn">Editar Perfil</a>
+        </div>
+
+        <div class="card">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Segurança</h3>
+          <p>Altere sua senha ou ative autenticação em dois fatores.</p>
+          <a href="#" class="card-btn">Segurança</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2024 HS Conexões — Todos os direitos reservados.</p>
+    </footer>
+  </div>
+<!-- Modal de Pedidos -->
+<div id="pedidosModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Meus Pedidos</h2>
+      <div id="lista-pedidos">
+        <p>Carregando pedidos...</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Verificação de login -->
+  <div id="sessao-expirada">Sessão expirada. Redirecionando para o login...</div>
+  
+  <script>
+    const isLoggedIn = localStorage.getItem("userLoggedIn");
+    const userEmail = localStorage.getItem("userEmail");
+  
+    if (!isLoggedIn) {
+      const aviso = document.getElementById("sessao-expirada");
+      aviso.style.display = "block";
+      setTimeout(() => {
+        window.location.href = "../login.html";
+      }, 2000);
+    } else {
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("user-nome").innerText = userEmail || "Usuário";
+  
+        // Logout
+        document.getElementById("sairBtn").addEventListener("click", () => {
+          localStorage.clear();
+          window.location.href = "../login.html";
+        });
+  
+        // Modal
+        const modal = document.getElementById("pedidosModal");
+        const closeModal = document.querySelector(".close");
+  
+        document.getElementById("verPedidosBtn").addEventListener("click", async (e) => {
+          e.preventDefault();
+          modal.style.display = "flex";
+  
+          const lista = document.getElementById("lista-pedidos");
+          lista.innerHTML = "<p>Carregando pedidos...</p>";
+  
+          try {
+            const resposta = await fetch(`/.netlify/functions/pedidos?email=${encodeURIComponent(userEmail)}`);
+            if (!resposta.ok) throw new Error("Erro na requisição");
+  
+            const pedidos = await resposta.json();
+            lista.innerHTML = "";
+  
+            if (pedidos.length === 0) {
+              lista.innerHTML = "<p>Você ainda não fez nenhum pedido.</p>";
+            } else {
+              pedidos.forEach(p => {
+                const card = document.createElement("div");
+                card.className = "pedido-card";
+                card.innerHTML = `
+                  <h4>Serviço: ${p.servico}</h4>
+                  <p><b>Status:</b> ${p.status}</p>
+                  <p><b>Data:</b> ${p.criado_em}</p>
+                `;
+                lista.appendChild(card);
+              });
+            }
+          } catch (error) {
+            lista.innerHTML = "<p>Erro ao carregar pedidos.</p>";
+            console.error(error);
+          }
+        });
+  
+        // Fechar modal
+        closeModal.addEventListener("click", () => modal.style.display = "none");
+        window.addEventListener("click", (e) => {
+          if (e.target === modal) modal.style.display = "none";
+        });
+      });
+    }
+  </script>
+  
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: #000000;
+      padding: 20px;
+      border-radius: 12px;
+      width: 90%; max-width: 600px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .close {
+      float: right;
+      font-size: 22px;
+      cursor: pointer;
+    }
+    .lista-pedidos {
+      margin-top: 20px;
+      display: grid;
+      gap: 15px;
+    }
+    .pedido-card {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+  </style>
+  
+</body>
+</html>

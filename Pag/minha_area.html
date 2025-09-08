@@ -8,71 +8,62 @@
   <link rel="icon" href="../img/icon.png" type="image/png">
   <link rel="stylesheet" href="../css/minha_area.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
 </head>
 <body>
-
-  <!-- AVISO DE SESSÃO EXPIRADA -->
-  <div id="sessao-expirada">Sessão expirada. Redirecionando para o login...</div>
-
-  <!-- HEADER -->
-  <header class="top-bar">
+  <!-- Sidebar -->
+  <aside class="sidebar">
     <div class="logo">HS Conexões</div>
-    <div class="user-controls">
-        <a class="entrar" href="../index.html" id="entrarBtn"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Início</a>
-        <a class="sair" id="sairBtn"><i class="fas fa-sign-out-alt"></i> Sair</a>
-    </div>
-  </header>
+    <a href="../index.html"><i class="fa fa-home"></i> Início</a>
+    <a href="#"><i class="fa fa-folder-open"></i> Meus Pedidos</a>
+    <a href="#"><i class="fa fa-user-edit"></i> Perfil</a>
+    <a href="#" id="sairBtn"><i class="fa fa-sign-out-alt"></i> Sair</a>
+  </aside>
 
-  <!-- CONTEÚDO PRINCIPAL -->
-  <main class="main-area">
-    <section class="welcome">
-      <h1>Bem-vindo, <span id="user-nome">Usuário</span>!</h1>
-      <p>Aqui você pode acompanhar seus pedidos, atualizar seu perfil e muito mais.</p>
-    </section>
-
-    <section class="cards">
-      <div class="card">
-        <i class="fas fa-folder-open"></i>
-        <h3>Meus Pedidos</h3>
-        <p>Acompanhe o andamento dos seus serviços solicitados.</p>
-        <a href="#" class="card-btn">Ver Pedidos</a>
+  <!-- Conteúdo principal -->
+  <div class="main-content">
+    <header class="top-bar">
+      <div class="user">
+        <i class="fa fa-user-circle"></i> <span id="user-nome">Usuário</span>
       </div>
+    </header>
 
-      <div class="card">
-        <i class="fas fa-user-edit"></i>
-        <h3>Atualizar Perfil</h3>
-        <p>Edite seu nome, email e outras informações pessoais.</p>
-        <a href="#" class="card-btn">Editar Perfil</a>
-      </div>
+    <main class="dashboard">
+      <h1>Bem-vindo à sua Área</h1>
+      <section class="cards">
+        <div class="card">
+          <i class="fas fa-folder-open"></i>
+          <h3>Meus Pedidos</h3>
+          <p>Acompanhe o andamento dos seus serviços solicitados.</p>
+          <a href="#" class="card-btn">Ver Pedidos</a>
+        </div>
 
-      <div class="card">
-        <i class="fas fa-shield-alt"></i>
-        <h3>Segurança</h3>
-        <p>Altere sua senha ou ative autenticação em dois fatores.</p>
-        <a href="#" class="card-btn">Segurança</a>
-      </div>
-    </section>
-  </main>
+        <div class="card">
+          <i class="fas fa-user-edit"></i>
+          <h3>Atualizar Perfil</h3>
+          <p>Edite seu nome, email e outras informações pessoais.</p>
+          <a href="#" class="card-btn">Editar Perfil</a>
+        </div>
+      </section>
+    </main>
 
-  <!-- RODAPÉ -->
-  <footer class="footer">
-    <p>&copy; 2024 HS Conexões — Todos os direitos reservados.</p>
-  </footer>
+    <footer class="footer">
+      <p>&copy; 2024 HS Conexões — Todos os direitos reservados.</p>
+    </footer>
+  </div>
 
-  <!-- VERIFICAÇÃO DE LOGIN -->
+  <!-- Verificação de login -->
+  <div id="sessao-expirada">Sessão expirada. Redirecionando para o login...</div>
   <script>
-    // Verificação imediata ANTES de mostrar conteúdo
     const isLoggedIn = localStorage.getItem("userLoggedIn");
+    const userRole = localStorage.getItem("userRole"); // role vindo do login
 
-    if (!isLoggedIn) {
+    if (!isLoggedIn || userRole !== "user") {
       const aviso = document.getElementById("sessao-expirada");
       aviso.style.display = "block";
       setTimeout(() => {
         window.location.href = "../login.html";
-      }, 2000); // 2 segundos de espera para mostrar aviso
+      }, 2000);
     } else {
-      // DOM só manipulado se estiver logado
       document.addEventListener("DOMContentLoaded", () => {
         const email = localStorage.getItem("userEmail") || "Usuário";
         document.getElementById("user-nome").innerText = email;
@@ -80,6 +71,7 @@
         document.getElementById("sairBtn").addEventListener("click", () => {
           localStorage.removeItem("userLoggedIn");
           localStorage.removeItem("userEmail");
+          localStorage.removeItem("userRole");
           window.location.href = "../login.html";
         });
       });

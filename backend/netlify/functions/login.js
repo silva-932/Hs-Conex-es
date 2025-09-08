@@ -26,18 +26,23 @@ exports.handler = async function (event) {
     await client.connect();
 
     const result = await client.query(
-      'SELECT * FROM usuarios WHERE email = $1 AND senha = $2',
+      'SELECT id, email, role FROM usuarios WHERE email = $1 AND senha = $2',
       [email, senha]
     );
 
     await client.end();
 
     if (result.rows.length > 0) {
+      const usuario = result.rows[0];
       return {
         statusCode: 200,
         body: JSON.stringify({
           message: 'Login bem-sucedido',
-          usuario: result.rows[0].email
+          usuario: {
+            id: usuario.id,
+            email: usuario.email,
+            role: usuario.role // "admin" ou "user"
+          }
         })
       };
     } else {
