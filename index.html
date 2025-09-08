@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HS-CONEXÕES</title>
+  <title>HS-CONEXÕES - Em Manutenção</title>
 
   <!-- Estilos -->
   <link rel="icon" href="../img/icon.png" type="image/png" />
@@ -12,134 +12,86 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(to bottom right, #0a0a0a, #1c1c1c), url("../img/bg.jpg") no-repeat center/cover;
+      color: #fff;
+      text-align: center;
+    }
+
+    .maintenance-container {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      max-width: 600px;
+      width: 90%;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .maintenance-container h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #ffcc00;
+    }
+
+    .maintenance-container p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .countdown {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #00ffcc;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
 </head>
 <body>
-  <!-- Preloader -->
-  <div id="preloader">
-    <div class="loader"></div>
+  <div class="maintenance-container">
+    <h1><i class="fas fa-tools"></i> Site em Manutenção</h1>
+    <p>Estamos a melhorar a sua experiência. Voltaremos em breve!</p>
+    <p><strong>Tempo estimado para retorno:</strong></p>
+    <div id="countdown" class="countdown">72:00:00</div>
   </div>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">HS Conexões</div>
-    <div class="menu-toggle" id="menu-toggle">
-      <i class="fas fa-bars"></i>
-    </div>
-    <ul class="nav-links" id="nav-links">
-      <li><a class="active" href="#">Início</a></li>
-      <li><a href="../Pag/serviços.html">Serviços</a></li>
-      <li><a href="../Pag/Sobre.html">Sobre Nós</a></li>
-      <li><a href="../Pag/contacto.html">Contactos</a></li>
-    </ul>
-  </nav>
-
-  <!-- Hero Section -->
-  <header class="hero">
-    <div class="hero-content">
-      <h1>Bem-vindo à HS Conexões</h1>
-      <p>Conectando seu mundo através de soluções inovadoras.</p>
-      <a href="#servicos" class="cta-btn">Conheça nossos serviços</a>
-    </div>
-  </header>
-
-  <main>
-    <!-- Carrossel de Serviços -->
-    <section id="servicos" class="carousel">
-      <h2 class="b">Nossos Serviços</h2>
-      <div class="carousel-container">
-        <div class="carousel-item">
-          <h3>Infraestrutura de Redes</h3>
-          <p>Montagem, manutenção e gestão de redes estruturadas e cabeadas com segurança e desempenho.</p>
-        </div>
-        <div class="carousel-item">
-          <h3>Segurança Digital</h3>
-          <p>Proteção completa contra ameaças, com soluções de firewall, antivírus, backups e criptografia.</p>
-        </div>
-        <div class="carousel-item">
-          <h3>Desenvolvimento Web</h3>
-          <p>Criação de websites, sistemas personalizados, landing pages e plataformas para negócios digitais.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Diferenciais -->
-    <section class="diferenciais">
-      <h2 class="b">Por que escolher a HS Conexões?</h2>
-      <div class="diferenciais-container">
-        <div class="diferencial-item"><i class="fas fa-shield-alt"></i> Segurança Garantida</div>
-        <div class="diferencial-item"><i class="fas fa-network-wired"></i> Tecnologia Avançada</div>
-        <div class="diferencial-item"><i class="fas fa-headset"></i> Suporte 24h</div>
-      </div>
-    </section>
-
-    <!-- Depoimentos -->
-    <section class="depoimentos">
-      <h2 class="b">O que nossos clientes dizem?</h2>
-      <div class="depoimentos-container">
-        <div class="depoimento-item">"Excelente serviço e suporte técnico impecável!"</div>
-        <div class="depoimento-item">"Minha empresa cresceu com a ajuda da HS Conexões."</div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Rodapé -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-logo">
-        <h2>HS Conexões</h2>
-        <p>Conectando você ao futuro!</p>
-      </div>
-
-      <div class="footer-links">
-        <h3>Links Rápidos</h3>
-        <ul>
-          <li><a href="../index.html">Início</a></li>
-          <li><a href="../Pag/serviços.html">Serviços</a></li>
-          <li><a href="../Pag/Sobre.html">Sobre Nós</a></li>
-          <li><a href="../Pag/contacto.html">Contactos</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-social">
-        <h3>Siga-nos</h3>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p>&copy; 2024 HS Conexões. Todos os direitos reservados.</p>
-    </div>
-  </footer>
-
-  <!-- Script do Menu e Preloader -->
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const toggle = document.getElementById("menu-toggle");
-      const navLinks = document.getElementById("nav-links");
+    // Definir tempo final (72 horas a partir de agora)
+    const deadline = new Date().getTime() + 72 * 60 * 60 * 1000;
 
-      toggle.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-      });
+    const countdown = document.getElementById("countdown");
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = deadline - now;
 
-      const links = navLinks.querySelectorAll("a");
-      links.forEach(link => {
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("active");
-        });
-      });
-    });
+      if (distance <= 0) {
+        clearInterval(timer);
+        countdown.innerHTML = "O site já está disponível!";
+        return;
+      }
 
-    window.addEventListener("load", function () {
-      const preloader = document.getElementById("preloader");
-      preloader.style.opacity = "0";
-      preloader.style.pointerEvents = "none";
-      setTimeout(() => {
-        preloader.style.display = "none";
-      }, 500);
-    });
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) + (Math.floor(distance / (1000 * 60 * 60 * 24)) * 24);
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = 
+        String(hours).padStart(2, "0") + ":" + 
+        String(minutes).padStart(2, "0") + ":" + 
+        String(seconds).padStart(2, "0");
+    }, 1000);
   </script>
 </body>
 </html>
