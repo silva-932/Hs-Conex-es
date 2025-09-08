@@ -22,7 +22,7 @@ body::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(124, 58, 237, 0.5), rgba(56, 189, 248, 0.3));
+  background: linear-gradient(to right, rgba(15,23,42,0.9), rgba(124,58,237,0.5), rgba(56,189,248,0.3));
   z-index: 0;
 }
 
@@ -32,7 +32,7 @@ body::before {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(15, 23, 42, 0.95);
+  background: rgba(15,23,42,0.95);
   backdrop-filter: blur(12px);
   display: flex;
   justify-content: space-between;
@@ -63,7 +63,7 @@ body::before {
 }
 
 .navbar .nav-links li a:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255,255,255,0.25);
   transform: scale(1.05);
 }
 
@@ -108,31 +108,52 @@ body::before {
 
 /* ----------------- SERVICES ----------------- */
 .services {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  display: flex;
   gap: 25px;
-  justify-items: center;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  scroll-behavior: smooth;
+}
+
+.services::-webkit-scrollbar {
+  height: 8px;
+}
+
+.services::-webkit-scrollbar-thumb {
+  background: rgba(37,99,235,0.5);
+  border-radius: 4px;
+}
+
+.services::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
 }
 
 .service-item {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 25px;
+  min-width: 280px;
+  max-width: 280px;
+  background: rgba(255,255,255,0.95);
+  padding: 20px 15px;
   border-radius: 16px;
   backdrop-filter: blur(6px);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 .service-item:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 8px 25px rgba(37,99,235,0.3);
 }
 
 .service-item i {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
+  font-size: 3rem;
+  margin-bottom: 20px;
   color: #2563eb;
+  flex-shrink: 0;
 }
 
 .service-item h3 {
@@ -145,6 +166,7 @@ body::before {
   font-size: 0.95rem;
   margin-bottom: 15px;
   color: #334155;
+  flex-grow: 1;
 }
 
 .cta-btn {
@@ -156,6 +178,7 @@ body::before {
   cursor: pointer;
   transition: 0.3s;
   font-weight: 500;
+  margin-top: auto;
 }
 
 .cta-btn:hover {
@@ -229,52 +252,45 @@ footer {
 }
 
 /* ----------------- RESPONSIVO ----------------- */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
+@media (max-width: 1024px) {
+  .services {
+    justify-content: center;
   }
+}
+
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
 
   .navbar .nav-links {
     position: absolute;
     top: 60px;
     right: 20px;
-    background: rgba(15, 23, 42, 0.95);
+    background: rgba(15,23,42,0.95);
     flex-direction: column;
     width: 220px;
     border-radius: 12px;
     display: none;
     padding: 10px 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     z-index: 1000;
   }
 
-  .navbar .nav-links.active {
-    display: flex;
-    animation: fadeIn 0.3s ease-in-out;
-  }
+  .navbar .nav-links.active { display: flex; }
+  .navbar .nav-links li { text-align: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);}
+  .navbar .nav-links li:last-child { border-bottom: none; }
 
-  .navbar .nav-links li {
-    text-align: center;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .navbar .nav-links li:last-child {
-    border-bottom: none;
-  }
-
-  .container {
-    padding: 140px 15px 40px;
-    text-align: center;
-  }
+  .container { padding: 140px 15px 40px; text-align: center; }
 
   .services {
-    grid-template-columns: 1fr;
+    flex-wrap: nowrap;
+    overflow-x: auto;
   }
+}
 
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
+@media (max-width: 480px) {
+  .title { font-size: 2rem; }
+  .subtitle { font-size: 1rem; }
+  .service-item { min-width: 240px; max-width: 240px; padding: 15px; }
+  .service-item i { font-size: 2.5rem; margin-bottom: 15px; }
+  .cta-btn { padding: 8px 15px; font-size: 0.9rem; }
 }

@@ -165,12 +165,10 @@ section h2 {
   font-size: 2.2rem;
   color: #ffffff;
   margin-bottom: 40px;
-  position: relative;
   text-transform: uppercase;
 }
 
 /* ----------------- Carrossel ----------------- */
-/* Carrossel */
 .carousel-container {
   display: flex;
   justify-content: center;
@@ -186,9 +184,10 @@ section h2 {
 }
 
 .carousel-item {
-  flex: 0 0 300px;
+  flex: 1 1 300px;
+  max-width: 300px;
   background: #ffffff;
-  color: #1e293b; /* cinza-escuro para texto */
+  color: #1e293b;
   border: 1px solid #e5e7eb;
   border-radius: 16px;
   padding: 28px 22px;
@@ -199,14 +198,14 @@ section h2 {
 }
 
 .carousel-item h3 {
-  color: #1E40AF; /* azul primário */
+  color: #1E40AF;
   font-size: 1.25rem;
   margin-bottom: 12px;
   font-weight: 700;
 }
 
 .carousel-item p {
-  color: #475569; /* cinza médio */
+  color: #475569;
   font-size: 0.95rem;
   line-height: 1.5;
 }
@@ -216,7 +215,6 @@ section h2 {
   border: 1px solid #3B82F6;
   box-shadow: 0 8px 24px rgba(59,130,246,0.25);
 }
-
 
 /* ----------------- Diferenciais ----------------- */
 .diferenciais-container {
@@ -263,21 +261,21 @@ footer {
   background: #0f172a;
   padding: 60px 20px;
   margin-top: auto;
-  text-align: center; /* centraliza o conteúdo horizontalmente */
+  text-align: center;
 }
 
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
   gap: 40px;
-  justify-items: center; /* centraliza cada coluna dentro da grid */
-  align-items: start; /* mantém o conteúdo alinhado no topo das colunas */
+  justify-items: center;
+  align-items: start;
 }
 
 .footer-column {
-  text-align: center; /* centraliza texto dentro de cada coluna */
+  text-align: center;
 }
 
 .footer-column h4 {
@@ -319,8 +317,14 @@ footer {
   font-size: 0.9rem;
 }
 
-
 /* ----------------- Responsividade ----------------- */
+@media (max-width: 1024px) {
+  .hero-content h1 { font-size: 3rem; }
+  .hero-content p { font-size: 1.1rem; max-width: 600px; }
+  .carousel-item { flex: 1 1 45%; max-width: 45%; }
+  .diferencial-item { flex: 1 1 45%; max-width: 45%; }
+}
+
 @media (max-width: 768px) {
   .menu-toggle { display: block; }
   .navbar .nav-links {
@@ -336,6 +340,9 @@ footer {
   }
   .navbar .nav-links.active { display: flex; }
   .hero-content h1 { font-size: 2.2rem; }
+  .hero-content p { font-size: 1rem; max-width: 90%; }
+  .carousel-item, .diferencial-item, .depoimento-item { flex: 1 1 100%; max-width: 100%; }
+  .footer-container { grid-template-columns: 1fr; gap: 30px; }
 }
 
 @media (max-width: 480px) {
