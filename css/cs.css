@@ -110,6 +110,7 @@ body::before {
   font-size: 2rem;
   color: #fff;
   cursor: pointer;
+  z-index: 1001;
 }
 
 /* ----------------- Hero ----------------- */
@@ -151,6 +152,7 @@ body::before {
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 0 20px rgba(37,99,235,0.6);
 }
+
 
 /* ----------------- Seções ----------------- */
 section {

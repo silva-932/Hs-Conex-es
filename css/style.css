@@ -1,5 +1,5 @@
 /* Fonte moderna */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* Reset */
 * {
@@ -60,13 +60,13 @@ body::before {
   z-index: 2;
 }
 
-/* Navbar responsiva estilizada */
+/* Navbar */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(15,23,42,0.85);
   backdrop-filter: blur(12px);
   display: flex;
   justify-content: space-between;
@@ -77,8 +77,8 @@ body::before {
 
 .navbar .logo {
   color: white;
-  font-weight: bold;
-  font-size: 1.5rem;
+  font-weight: 700;
+  font-size: 1.7rem;
 }
 
 .navbar .nav-links {
@@ -92,23 +92,20 @@ body::before {
   text-decoration: none;
   padding: 10px 15px;
   border-radius: 12px;
-  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
   font-weight: 500;
+  transition: 0.3s;
 }
 
-.navbar .nav-links li a:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: scale(1.05);
-}
-
-.navbar .nav-links li .active {
+.navbar .nav-links li a:hover,
+.navbar .nav-links li a.active {
   background: #2563eb;
   color: white;
+  transform: scale(1.05);
 }
 
 .menu-toggle {
   display: none;
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: white;
   cursor: pointer;
 }
@@ -116,11 +113,11 @@ body::before {
 /* Hero */
 .hero {
   min-height: 100vh;
-  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 0 20px;
 }
 
 .hero-content h1 {
@@ -134,8 +131,8 @@ body::before {
   font-size: 1.2rem;
   max-width: 700px;
   margin: 0 auto 30px;
-  opacity: 0.9;
   color: #e2e8f0;
+  opacity: 0.95;
 }
 
 .cta-btn {
@@ -169,68 +166,44 @@ body::before {
   position: relative;
 }
 
-/* Cards genéricos */
-.card {
-  background: rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 30px 20px;
-  color: #fff;
-  transition: 0.3s;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 20px rgba(37,99,235,0.4);
-}
-
-/* Carrossel */
+/* Carousel de serviços */
 .carousel-container {
   display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 24px;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-.carousel-container::-webkit-scrollbar {
-  display: none;
-}
-
 .carousel-item {
   flex: 0 0 300px;
-  background: #ffffff;
-  color: #1e293b; /* cinza-escuro para texto */
-  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #1e293b;
   border-radius: 16px;
   padding: 28px 22px;
   text-align: center;
-  font-weight: 500;
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .carousel-item h3 {
-  color: #1E40AF; /* azul primário */
   font-size: 1.25rem;
-  margin-bottom: 12px;
   font-weight: 700;
+  margin-bottom: 12px;
+  color: #1E40AF;
 }
 
 .carousel-item p {
-  color: #475569; /* cinza médio */
   font-size: 0.95rem;
   line-height: 1.5;
+  color: #475569;
 }
 
 .carousel-item:hover {
   transform: translateY(-6px);
-  border: 1px solid #3B82F6;
   box-shadow: 0 8px 24px rgba(59,130,246,0.25);
 }
-
 
 /* Diferenciais */
 .diferenciais-container {
@@ -248,6 +221,13 @@ body::before {
   padding: 20px;
   text-align: center;
   transition: 0.3s;
+}
+
+.diferencial-item i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  display: block;
+  color: #2563eb;
 }
 
 .diferencial-item:hover {
@@ -322,19 +302,33 @@ footer {
 }
 
 /* Responsividade */
+@media (max-width: 1024px) {
+  .hero-content h1 { font-size: 2.8rem; }
+}
+
 @media (max-width: 768px) {
   .menu-toggle { display: block; }
   .navbar .nav-links {
     display: none;
     position: absolute;
     top: 65px;
-    right: 30px;
+    right: 20px;
     background: rgba(15,23,42,0.95);
     flex-direction: column;
     width: 220px;
     padding: 20px;
     border-radius: 12px;
+    gap: 15px;
   }
   .navbar .nav-links.active { display: flex; }
   .hero-content h1 { font-size: 2.2rem; }
+  .carousel-item { flex: 1 1 100%; max-width: 95%; }
+  .diferencial-item { flex: 1 1 100%; max-width: 90%; }
+  .depoimento-item { flex: 1 1 100%; max-width: 95%; }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 { font-size: 1.8rem; }
+  .hero-content p { font-size: 1rem; }
+  .cta-btn { padding: 12px 24px; font-size: 0.9rem; }
 }
