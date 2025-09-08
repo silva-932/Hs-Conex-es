@@ -115,108 +115,160 @@
 
 <script>
   // Toggle menu mobile
-  const toggle = document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  toggle.addEventListener('click', ()=>{ navLinks.classList.toggle('active'); });
+const toggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+toggle.addEventListener('click', ()=>{ navLinks.classList.toggle('active'); });
 
-  const services = [
-    { nome:"Consultoria de TI", descricao:"Melhoramos sua infraestrutura tecnológica.", campos:[
+// Lista de serviços com ícones e descrições detalhadas
+const services = [
+  { 
+    nome:"Consultoria de TI", 
+    descricao:"Melhoramos sua infraestrutura tecnológica, garantindo performance, segurança e suporte contínuo. Fornecemos análises detalhadas, planejamento estratégico e otimização de sistemas.", 
+    icone:"fas fa-network-wired", 
+    campos:[
       {tipo:"text", nome:"nome", placeholder:"Seu Nome", required:true},
       {tipo:"email", nome:"email", placeholder:"Seu Email", required:true},
       {tipo:"textarea", nome:"detalhes", placeholder:"Descreva seu projeto", required:true}
-    ]},
-    { nome:"Designer Gráfico", descricao:"Criação de identidade visual e design profissional.", campos:[
+    ]
+  },
+  { 
+    nome:"Designer Gráfico", 
+    descricao:"Criação de identidade visual completa: logos, materiais promocionais, design digital e impressos. Transformamos suas ideias em projetos criativos e profissionais.", 
+    icone:"fas fa-paint-brush", 
+    campos:[
       {tipo:"text", nome:"nome", placeholder:"Seu Nome", required:true},
       {tipo:"email", nome:"email", placeholder:"Seu Email", required:true},
       {tipo:"textarea", nome:"detalhes", placeholder:"Tipo de design desejado", required:true}
-    ]},
-    { nome:"Help Desk e Hardware", descricao:"Suporte técnico especializado.", campos:[
+    ]
+  },
+  { 
+    nome:"Help Desk e Hardware", 
+    descricao:"Suporte técnico especializado para hardware e software. Garantimos que seus dispositivos funcionem perfeitamente e que problemas sejam resolvidos rapidamente.", 
+    icone:"fas fa-headset", 
+    campos:[
       {tipo:"text", nome:"nome", placeholder:"Seu Nome", required:true},
       {tipo:"email", nome:"email", placeholder:"Seu Email", required:true},
       {tipo:"textarea", nome:"problema", placeholder:"Descreva o problema", required:true}
-    ]},
-    { nome:"Infraestrutura de Rede", descricao:"Planejamento e implementação de redes.", campos:[
+    ]
+  },
+  { 
+    nome:"Infraestrutura de Rede", 
+    descricao:"Planejamento e implementação de redes corporativas e residenciais, garantindo conectividade estável, segura e escalável, com monitoramento e manutenção contínua.", 
+    icone:"fas fa-server", 
+    campos:[
       {tipo:"text", nome:"nome", placeholder:"Seu Nome", required:true},
       {tipo:"email", nome:"email", placeholder:"Seu Email", required:true},
       {tipo:"textarea", nome:"detalhes", placeholder:"Descrição da rede", required:true}
-    ]},
-    { nome:"Cibersegurança", descricao:"Proteção avançada contra ataques.", campos:[
+    ]
+  },
+  { 
+    nome:"Cibersegurança", 
+    descricao:"Proteção avançada contra ataques cibernéticos, vulnerabilidades e ameaças digitais. Implementamos soluções de firewall, criptografia e monitoramento contínuo.", 
+    icone:"fas fa-shield-alt", 
+    campos:[
       {tipo:"text", nome:"nome", placeholder:"Seu Nome", required:true},
       {tipo:"email", nome:"email", placeholder:"Seu Email", required:true},
       {tipo:"textarea", nome:"detalhes", placeholder:"Descrição do serviço desejado", required:true}
-    ]},
-    { nome:"Registro de Domínios", descricao:"Registrar domínio para seu site.", campos:[
+    ]
+  },
+  { 
+    nome:"Registro de Domínios", 
+    descricao:"Registramos domínios de forma rápida e segura para o seu site, garantindo disponibilidade e proteção do seu endereço digital.", 
+    icone:"fas fa-globe", 
+    campos:[
       {tipo:"text", nome:"nome", placeholder:"Seu Nome", required:true},
       {tipo:"email", nome:"email", placeholder:"Seu Email", required:true},
       {tipo:"text", nome:"dominio", placeholder:"Nome do domínio desejado", required:true}
-    ]},
-    { nome:"Criação de Websites", descricao:"Desenvolvimento completo de sites.", campos:[
+    ]
+  },
+  { 
+    nome:"Criação de Websites", 
+    descricao:"Desenvolvimento completo de websites, incluindo Landing Pages, E-commerce, Portfólios e sites personalizados, responsivos e otimizados para SEO.", 
+    icone:"fas fa-laptop-code", 
+    campos:[
       {tipo:"text", nome:"nome", placeholder:"Seu Nome", required:true},
       {tipo:"email", nome:"email", placeholder:"Seu Email", required:true},
       {tipo:"textarea", nome:"detalhes", placeholder:"Descrição do site desejado", required:true},
       {tipo:"select", nome:"tipo", options:["Landing Page","E-commerce","Portfólio","Outro"], required:true}
-    ]}
-  ];
-
-  const servicesContainer = document.getElementById('services-container');
-  const modal = document.getElementById('serviceModal');
-  const closeModal = document.querySelector('.close');
-  const modalTitle = document.getElementById('modal-title');
-  const formFields = document.getElementById('form-fields');
-  const form = document.getElementById('service-form');
-
-  services.forEach(s => {
-    const div = document.createElement('div');
-    div.className = 'service-item';
-    div.innerHTML = `<i class="fas fa-cogs"></i><h3>${s.nome}</h3><p>${s.descricao}</p><button class="cta-btn">Solicitar</button>`;
-    div.querySelector('button').addEventListener('click',()=>openModal(s));
-    servicesContainer.appendChild(div);
-  });
-
-  function openModal(servico){
-    modal.style.display='flex';
-    modalTitle.innerText=`Solicitar: ${servico.nome}`;
-    formFields.innerHTML='';
-    servico.campos.forEach(c=>{
-      let field;
-      if(c.tipo==='textarea'){
-        field=document.createElement('textarea');
-        field.name=c.nome; field.placeholder=c.placeholder; field.required=c.required;
-      } else if(c.tipo==='select'){
-        field=document.createElement('select'); field.name=c.nome; field.required=c.required;
-        c.options.forEach(opt=>{ const option=document.createElement('option'); option.value=opt; option.text=opt; field.appendChild(option); });
-      } else {
-        field=document.createElement('input'); field.type=c.tipo; field.name=c.nome; field.placeholder=c.placeholder; field.required=c.required;
-      }
-      formFields.appendChild(field);
-    });
+    ]
   }
+];
 
-  closeModal.addEventListener('click', ()=> modal.style.display='none');
-  window.addEventListener('click', e=>{ if(e.target===modal) modal.style.display='none'; });
+const servicesContainer = document.getElementById('services-container');
+const modal = document.getElementById('serviceModal');
+const closeModal = document.querySelector('.close');
+const modalTitle = document.getElementById('modal-title');
+const formFields = document.getElementById('form-fields');
+const form = document.getElementById('service-form');
 
-  form.addEventListener('submit', async e=>{
-    e.preventDefault();
-    const data=Object.fromEntries(new FormData(form).entries());
-    data.servico=modalTitle.innerText.replace("Solicitar: ","");
-    try {
-      const response=await fetch('/.netlify/functions/enviar-email',{ method:'POST', body:JSON.stringify(data) });
-      const result=await response.json();
-      if(response.ok){ mostrarAlerta(result.message); } 
-      else { mostrarAlerta("Erro ao enviar solicitação: "+result.erro); }
-      modal.style.display='none';
-      form.reset();
-    } catch(err){ mostrarAlerta("Erro ao enviar solicitação: "+err.message); }
+// Renderização dos cards com ícones individuais
+services.forEach(s => {
+  const div = document.createElement('div');
+  div.className = 'service-item';
+  div.innerHTML = `<i class="${s.icone}"></i><h3>${s.nome}</h3><p>${s.descricao}</p><button class="cta-btn">Solicitar</button>`;
+  div.querySelector('button').addEventListener('click', ()=> openModal(s));
+  servicesContainer.appendChild(div);
+});
+
+// Função para abrir modal com formulário
+function openModal(servico){
+  modal.style.display = 'flex';
+  modalTitle.innerText = `Solicitar: ${servico.nome}`;
+  formFields.innerHTML = '';
+  servico.campos.forEach(c => {
+    let field;
+    if(c.tipo==='textarea'){
+      field = document.createElement('textarea');
+      field.name=c.nome; field.placeholder=c.placeholder; field.required=c.required;
+    } else if(c.tipo==='select'){
+      field = document.createElement('select');
+      field.name=c.nome; field.required=c.required;
+      c.options.forEach(opt => { 
+        const option = document.createElement('option'); 
+        option.value = opt; 
+        option.text = opt; 
+        field.appendChild(option); 
+      });
+    } else {
+      field = document.createElement('input');
+      field.type = c.tipo;
+      field.name = c.nome;
+      field.placeholder = c.placeholder;
+      field.required = c.required;
+    }
+    formFields.appendChild(field);
   });
+}
 
-  function mostrarAlerta(mensagem){
-    const alerta=document.getElementById('custom-alert');
-    const mensagemElem=document.getElementById('alert-message');
-    mensagemElem.innerText=mensagem;
-    alerta.style.display='flex';
-    setTimeout(()=>{ alerta.style.display='none'; },5000);
-  }
-  function fecharAlerta(){ document.getElementById('custom-alert').style.display='none'; }
+// Fechar modal
+closeModal.addEventListener('click', ()=> modal.style.display='none');
+window.addEventListener('click', e => { if(e.target===modal) modal.style.display='none'; });
+
+// Envio do formulário
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(form).entries());
+  data.servico = modalTitle.innerText.replace("Solicitar: ","");
+  try {
+    const response = await fetch('/.netlify/functions/enviar-email', { method:'POST', body:JSON.stringify(data) });
+    const result = await response.json();
+    if(response.ok){ mostrarAlerta(result.message); } 
+    else { mostrarAlerta("Erro ao enviar solicitação: "+result.erro); }
+    modal.style.display='none';
+    form.reset();
+  } catch(err){ mostrarAlerta("Erro ao enviar solicitação: "+err.message); }
+});
+
+// Alerta estilizado
+function mostrarAlerta(mensagem){
+  const alerta = document.getElementById('custom-alert');
+  const mensagemElem = document.getElementById('alert-message');
+  mensagemElem.innerText = mensagem;
+  alerta.style.display='flex';
+  setTimeout(()=>{ alerta.style.display='none'; },5000);
+}
+function fecharAlerta(){ document.getElementById('custom-alert').style.display='none'; }
+
 </script>
 </body>
 </html>
