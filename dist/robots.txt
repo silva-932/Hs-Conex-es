@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hsconexoes.site/sitemap.xml
